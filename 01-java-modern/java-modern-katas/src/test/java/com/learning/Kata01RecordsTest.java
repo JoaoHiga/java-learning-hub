@@ -7,13 +7,16 @@ class Kata01RecordsTest {
 
     // Modela el resultado de una operación con sealed + records
     sealed interface Result<T> permits Result.Ok, Result.Err {
-        record Ok<T>(T value) implements Result<T> {}
-        record Err<T>(String message) implements Result<T> {}
+        record Ok<T>(T value) implements Result<T> {
+        }
+
+        record Err<T>(String message) implements Result<T> {
+        }
     }
 
     String describe(Result<?> result) {
         return switch (result) {
-            case Result.Ok<?> ok   -> "Éxito: " + ok.value();
+            case Result.Ok<?> ok -> "Éxito: " + ok.value();
             case Result.Err<?> err -> "Error: " + err.message();
         };
     }
